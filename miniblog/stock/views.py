@@ -1,10 +1,13 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
+from .models import *
+
 menu = ['О сайте', 'Добавить статью', 'Обратная связь', 'Войти']
 
 def index(request):
-    return render (request, 'stock/index.html', {'title': 'Главная страница', 'menu': menu})
+    posts = Artifact.objects.all()
+    return render (request, 'stock/index.html', {'posts': posts, 'title': 'Главная страница', 'menu': menu})
 
 def categories(request, catid):
     return HttpResponse(f'<h1>Товары по категориям</h1><p>{catid}</p>')
