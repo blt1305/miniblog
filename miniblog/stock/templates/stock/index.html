@@ -4,11 +4,14 @@
 
     <h1>{{ title }}</h1>
 
-<ul>
+<ul class="list-articles">
     {% for p in posts %}
     <li>
         <h2>{{p.title}}</h2>
-        <p>{{p.summary}}</p>
+        <p>{{p.text|linebreaks|truncatewords:50}}</p>
+        <div class="clear"></div>
+
+        <p class="link-read-post"><a href="#">Читать пост</a></p>
         <hr>
     </li>
     {% endfor %}

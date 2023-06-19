@@ -9,8 +9,8 @@ def index(request):
     posts = Artifact.objects.all()
     return render (request, 'stock/index.html', {'posts': posts, 'title': 'Главная страница', 'menu': menu})
 
-def categories(request, catid):
-    return HttpResponse(f'<h1>Товары по категориям</h1><p>{catid}</p>')
+def categories(request, cat_id):
+    return HttpResponse(f'<h1>Товары по категориям</h1><p>{cat_id}</p>')
 
 def archive(request, year):
     if int(year) < 2020:

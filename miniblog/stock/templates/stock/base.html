@@ -12,7 +12,7 @@
 </head>
 <body>
     <aside>
-        <img src="{% static 'stock/img/dacha7.jpg' %}" alt="Здесь должен быть логотип">
+        <img src="{% static 'stock/images/dacha7.jpg' %}" class="image">
         <span class = "logo">Склад</span>
         <h3>Навигация</h3>
         <ul>
@@ -21,11 +21,11 @@
         </ul>
     </aside>
 {% block mainmenu %}
-<ul>
-  {% for m in menu %}
-    <li> {{ m }} </li>
-  {% endfor %}
-</ul>
+    <ul>
+    {% for m in menu %}
+        <li> {{ m }} </li>
+    {% endfor %}
+    </ul>
 {% endblock mainmenu %}
 
 {% block content %}
