@@ -1,0 +1,10 @@
+# created by virtualenv automatically
+venv/bin
+**__pycache__
+../../.idea
+**.ipynb_checkpoints/
+.env
+../venv/
+ ../main.py
+ /db.sqlite3
+ db.sqlite3
