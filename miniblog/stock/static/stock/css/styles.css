@@ -95,14 +95,28 @@ ul.mainmenu li a {
 	color: #fdc073;
 	text-decoration: none;
 }
+
 ul.mainmenu li a:hover {
 	color: #FDA83D;
-
+}
 .logo {
 	background: url('../images/Без имени.jpeg') no-repeat 10px 5px;
 	width: 70px;
 	height: 60px;
+}
 
 .clear {clear: both;}
 
+.table-content {
+	width: 100%;
+	min-height: 100%;
+	height: 100%;
+}
+
+.left-chapters {
+	margin: 0;
+	background: #eee;
+	border-right: 1px solid #ccc;
+	min-height: 100%;
+}
 

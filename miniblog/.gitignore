@@ -8,3 +8,4 @@ venv/bin
  ../main.py
  /db.sqlite3
  db.sqlite3
+.idea/workspace.xml

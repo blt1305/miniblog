@@ -12,16 +12,18 @@ menu = [
 
 def index(request):
     posts = Artifact.objects.all()
+    cats = Category.objects.all()
     context = {
         'posts': posts,
+        'cats' : cats,
         'title': 'Главная страница',
-        'menu': menu}
+        'menu': menu,
+        'cat_selected': 0,}
     return render (request, 'stock/index.html', context=context)
 
 
 def about(request):
     return render (request, 'stock/about.html', {'menu': menu, 'title': 'О сайте'})
-
 
 
 def add_page(request):
@@ -40,3 +42,16 @@ def pageNotFound(request, exception):
 
 def show_post(request, post_id):
     return HttpResponse(f'Отображение статьи с id = {post_id}')
+
+
+def show_category(request, cat_id):
+    posts = Artifact.objects.filter(cat_id=cat_id)
+    cats = Category.objects.all()
+
+    context = {
+        'posts': posts,
+        'cats': cats,
+        'title': 'Отображение по категориям',
+        'menu': menu,
+        'cat_selected': cat_id, }
+    return render (request, 'stock/index.html', context=context)
