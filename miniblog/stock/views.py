@@ -1,6 +1,8 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
+from django.views.generic import DetailView, UpdateView, DeleteView, View
+
 from .models import *
 
 menu = [
@@ -41,7 +43,9 @@ def pageNotFound(request, exception):
 
 
 def show_post(request, post_id):
-    return HttpResponse(f'Отображение статьи с id = {post_id}')
+    art = Artifact.objects.get(id=post_id)
+    return render(request, 'stock/one_art.html', {'post': art})
+
 
 
 def show_category(request, cat_id):
