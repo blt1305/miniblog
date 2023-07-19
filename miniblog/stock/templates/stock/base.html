@@ -13,12 +13,9 @@
 <body>
     <aside>
         <img src="{% static 'stock/images/dacha7.jpg' %}" class="image">
-        <span class = "logo">Склад</span>
+        <span class = "logo">Избушка</span>
         <h3>Навигация</h3>
         <ul>
-            <a href=""><li><i class="fa-solid fa-house"></i>Главная</li></a>
-
-
             {% for m in menu %}
                 {% if not forloop.last %}
                     <li><i class="fa-solid fa-house"></i><a href={% url m.url_name %}>{{m.title}}</a>  </li>

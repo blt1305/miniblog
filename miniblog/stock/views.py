@@ -6,6 +6,7 @@ from django.views.generic import DetailView, UpdateView, DeleteView, View
 from .models import *
 
 menu = [
+    {'title':'Главная', 'url_name': 'home'},
     {'title':'О сайте', 'url_name': 'about'},
     {'title':'Добавить статью', 'url_name':'add_page'},
     {'title':'Обратная связь', 'url_name':'contact'},
@@ -44,8 +45,11 @@ def pageNotFound(request, exception):
 
 def show_post(request, post_id):
     art = Artifact.objects.get(id=post_id)
-    return render(request, 'stock/one_art.html', {'post': art})
-
+    context = {
+        'post': art,
+        'title': art.title,
+        'menu': menu}
+    return render(request, 'stock/one_art.html', context=context)
 
 
 def show_category(request, cat_id):

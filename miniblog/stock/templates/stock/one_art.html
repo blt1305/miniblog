@@ -2,13 +2,42 @@
 
 {% block content %}
 
-<p><img class="img-article-left thumb" src="{{post.photo.url}}"></p>
+    <h3>{{ title }}</h3>
+
+<p><img class="img-article-left thumb" src="{{post.photo.url}}" width="15%"></p>
 
 <div>
-    <h3>{{post.title }}</h3>
-    <p>{{post.text}}</p>
-</div>
 
+    <p>{{post.text}}</p>
+
+</div>
+<div class="form-comment">
+
+    <div>
+        <form action="#" method="post">
+            <div>
+                <label><h4>Ваш комментарий:</h4></label>
+            <textarea name="comment_text"></textarea>
+            </div>
+
+            <div>
+                <label><h4>Ваше имя: *</h4></label>
+            <input type="text" name="name">
+            </div>
+
+            <div>
+                <label><h4>Ваш email: *</h4></label>
+            <input type="email" name="email_address">
+            </div>
+
+            <div>
+                <input type="submit">
+            </div>
+
+        </form>
+    </div>
+
+</div>
 
 
 {% endblock %}
