@@ -16,9 +16,6 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'comment')
 
 admin.site.register(Artifact, ArtifactAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Comment, CommentAdmin)

@@ -47,9 +47,11 @@ def show_post(request, post_id):
     art = Artifact.objects.get(id=post_id)
     context = {
         'post': art,
-        'title': art.title,
-        'menu': menu}
+        'title': art,
+        'menu': menu
+    }
     return render(request, 'stock/one_art.html', context=context)
+
 
 
 def show_category(request, cat_id):
