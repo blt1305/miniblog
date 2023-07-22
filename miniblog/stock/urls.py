@@ -9,5 +9,6 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('login/', login, name='login'),
     path('<int:post_id>/', show_post, name='post'),
-    path('category/<int:cat_id>/', show_category, name='category')
+    path('category/<int:cat_id>/', show_category, name='category'),
+    path('review/<int:post_id>/', views.AddComment.as_view(), name='add_comment')
 ]

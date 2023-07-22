@@ -2,8 +2,8 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
 from django.views.generic import DetailView, UpdateView, DeleteView, View
-
 from .models import *
+from .forms import CommentForm
 
 menu = [
     {'title':'Главная', 'url_name': 'home'},
@@ -65,3 +65,16 @@ def show_category(request, cat_id):
         'menu': menu,
         'cat_selected': cat_id, }
     return render (request, 'stock/index.html', context=context)
+
+class AddComment(View):
+    def post(self, request, post_id):
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                form = form.save(commit=False)
+                form.post_id = post_id
+                form.save()
+
+
+
+        return redirect(f'/{post_id}')
