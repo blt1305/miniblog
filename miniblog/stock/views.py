@@ -74,7 +74,38 @@ class AddComment(View):
                 form = form.save(commit=False)
                 form.post_id = post_id
                 form.save()
-
-
-
         return redirect(f'/{post_id}')
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
+class AddLike(View):
+    def get(self, request, post_id):
+        ip_client = get_client_ip(request)
+        try:
+            Likes.objects.get(ip = ip_client, post_id = post_id)
+            return redirect(f'/{post_id}')
+        except:
+            new_like = Likes()
+            new_like.ip = ip_client
+            new_like.pos_id = int(post_id)
+            new_like.save()
+            return redirect(f'/{post_id}')
+
+
+class DelLike(View):
+    def get(self, request, post_id):
+        ip_client = get_client_ip(request)
+        try:
+            lik = Likes.objects.get(ip = ip_client)
+            lik.delete()
+            return redirect(f'/{post_id}')
+        except:
+            return redirect(f'/{post_id}')

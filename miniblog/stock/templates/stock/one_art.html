@@ -9,6 +9,14 @@
 </div>
 
 <h5><p class="link-read-post"><a href="{% url 'home' %}">Назад</a></p></h5>
+<div>
+    <br>
+    <p>Понравилось: {{ post.likes_set.all.count }}</p>
+    <br>
+    <a href="{% url 'add_likes' post.id %}" class="btn btn-outline-primary">Нравится </a>
+    <a href="{% url 'del_likes' post.id %}" class="btn btn-outline-danger">Не нравится</a>
+</div>
+<br>
 
 <div>
     <h5>Оставить комментарий</h5>
