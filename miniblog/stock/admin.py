@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import *
 
 class ArtifactAdmin(admin.ModelAdmin):
@@ -16,5 +15,13 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'text_comments', 'post')
+    list_display_links = ('text_comments', 'post')
+    search_fields = ('text_comments',)
+
+
+
 admin.site.register(Artifact, ArtifactAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Comment, CommentAdmin)

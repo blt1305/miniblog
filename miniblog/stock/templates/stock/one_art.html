@@ -2,15 +2,59 @@
 
 {% block content %}
 
-<p><img class="img-article-left thumb" src="{{post.photo.url}}"></p>
-
 <div>
     <h3>{{post.title }}</h3>
+    <p><img class="img-article-left thumb" src="{{post.photo.url}}"></p>
     <p>{{post.text}}</p>
 </div>
 
+<h5><p class="link-read-post"><a href="{% url 'home' %}">Назад</a></p></h5>
+<div>
+    <br>
+    <p>Понравилось: {{ post.likes_set.all.count }}</p>
+    <br>
+    <a href="{% url 'add_likes' post.id %}" class="btn btn-outline-primary">Нравится </a>
+    <a href="{% url 'del_likes' post.id %}" class="btn btn-outline-danger">Не нравится</a>
+</div>
+<br>
 
+<div>
+    <h5>Оставить комментарий</h5>
+    <div>
+        <form action="{% url 'add_comment' post.id %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label>Ваш комментарий</label>
+                <textarea name="text_comments"></textarea>
+            </div>
+
+            <div>
+                <label>Ваше имя *</label>
+                <input type="text" name="name">
+            </div>
+
+            <div>
+                <label>Ваш email *</label>
+                <input type="email" name="user_email">
+            </div>
+
+            <div><input type="submit"></div>
+
+        </form>
+    </div>
+
+    <div>
+        {% for comment in post.comment_set.all %}
+        <div class="view-comment">
+            <h4>{{ comment.name }}</h4>
+            <p>
+                {{ comment.text_comments }}
+            </p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+</div>
 
 {% endblock %}
-
-

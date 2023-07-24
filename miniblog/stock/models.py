@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -44,4 +45,21 @@ class Artifact(models.Model):
         ordering = ['time_create', 'title']
 
 
+class Comment(models.Model):
+    user_email = models.EmailField()
+    name = models.CharField('Имя', max_length=100)
+    text_comments = models.TextField('Текст комментария', max_length=2000)
+    post = models.ForeignKey(Artifact, on_delete=models.CASCADE, verbose_name='Публикация')
 
+    def __str__(self):
+        return f'{self.name}, {self.post}'
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+
+class Likes(models.Model):
+    '''лайки'''
+    ip = models.CharField('IP-адрес', max_length=100)
+    pos = models.ForeignKey(Artifact, verbose_name='Публикация', on_delete=models.CASCADE)
