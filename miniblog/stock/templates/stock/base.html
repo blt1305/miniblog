@@ -16,14 +16,11 @@
         <img src="{% static 'stock/images/dacha7.jpg' %}" class="image">
         <span class = "logo">Избушка</span>
         <h3>Навигация</h3>
+<!--        {% get_menu as menu %}-->
         <ul>
-            {% for m in menu %}
-                {% if not forloop.last %}
-                    <li><i class="fa-solid fa-house"></i><a href={% url m.url_name %}>{{m.title}}</a>  </li>
-                {% else %}
-                    <li class = 'last'><i class="fa-solid fa-house"></i><a href={% url m.url_name %}>{{m.title}}</a></li>
-                {% endif %}
-            {% endfor %}
+
+            {% show_menu %}
+
         </ul>
     </aside>
 {% block mainmenu %}
