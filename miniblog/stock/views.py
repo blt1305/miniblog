@@ -15,10 +15,8 @@ menu = [
 
 def index(request):
     posts = Artifact.objects.all()
-    cats = Category.objects.all()
     context = {
         'posts': posts,
-        'cats' : cats,
         'title': 'Главная страница',
         'menu': menu,
         'cat_selected': 0,}
@@ -56,11 +54,9 @@ def show_post(request, post_id):
 
 def show_category(request, cat_id):
     posts = Artifact.objects.filter(cat_id=cat_id)
-    cats = Category.objects.all()
 
     context = {
         'posts': posts,
-        'cats': cats,
         'title': 'Отображение по категориям',
         'menu': menu,
         'cat_selected': cat_id, }
@@ -95,7 +91,7 @@ class AddLike(View):
         except:
             new_like = Likes()
             new_like.ip = ip_client
-            new_like.pos_id = int(post_id)
+            new_like.post_id = int(post_id)
             new_like.save()
             return redirect(f'/{post_id}')
 
