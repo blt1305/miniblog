@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 from django.views.generic import DetailView, UpdateView, DeleteView, View
 from .models import *
-from .forms import CommentForm
+from .forms import *
 
 
 
@@ -21,7 +21,17 @@ def about(request):
 
 
 def add_page(request):
-    return render (request, 'stock/add_page.html', { 'title': 'Добавить статью'})
+    if request.method == 'POST':
+        form = AddStockForm(request.POST)
+        if form.is_valid():
+            try:
+                Artifact.objects.create(**form.cleaned_data)
+                return redirect('home')
+            except:
+                form.add_error(None,'Oшибка при добавлении записи')
+    else:
+        form = AddStockForm()
+    return render (request, 'stock/add_page.html', {'form': form, 'title': 'Добавить статью'})
 
 
 def contact(request):
