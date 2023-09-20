@@ -22,13 +22,10 @@ def about(request):
 
 def add_page(request):
     if request.method == 'POST':
-        form = AddStockForm(request.POST)
+        form = AddStockForm(request.POST, request.FILES)
         if form.is_valid():
-            try:
-                Artifact.objects.create(**form.cleaned_data)
-                return redirect('home')
-            except:
-                form.add_error(None,'Oшибка при добавлении записи')
+            form.save()
+            return redirect('home')
     else:
         form = AddStockForm()
     return render (request, 'stock/add_page.html', {'form': form, 'title': 'Добавить статью'})
